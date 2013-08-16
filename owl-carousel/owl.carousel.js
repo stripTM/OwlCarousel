@@ -448,8 +448,8 @@ if ( typeof Object.create !== 'function' ) {
 
 		next : function(speed){
 			var base = this;
-			base.currentSlide += 1;
-			if(base.currentSlide > base.maximumSlide){
+			base.currentSlide += base.options.step;
+			if(base.currentSlide > base.maximumSlide + base.options.step - 1){
 				base.currentSlide = base.maximumSlide;
 				return false;
 			}
@@ -458,8 +458,8 @@ if ( typeof Object.create !== 'function' ) {
 
 		prev : function(speed){
 			var base = this;
-			base.currentSlide -= 1
-			if(base.currentSlide < 0){
+			base.currentSlide -= base.options.step
+			if(base.currentSlide < 0 - base.options.step - 1){
 				base.currentSlide = 0;
 				return false;
 			}
@@ -887,6 +887,7 @@ if ( typeof Object.create !== 'function' ) {
     	responsive: true,
 
     	items : 5,
+    	step : 1,
     	itemsDesktop : [1199,4],
 		itemsDesktopSmall : [979,3],
 		itemsTablet: [768,2],
